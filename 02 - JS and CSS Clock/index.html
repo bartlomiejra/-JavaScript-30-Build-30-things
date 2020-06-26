@@ -75,9 +75,20 @@
 
   <script>
   function setDate() {
+    const secondhand = document.querySelector('.second-hand')
+    const hourhand = document.querySelector('.hour-hand')
+    const minshand = document.querySelector('.min-hand')
     const now = new Date();
+
     const seconds = now.getSeconds();
     console.log(seconds);
+
+    const SecondDegrees = (( seconds / 60) * 360) + 90;
+    minshand.style.transform= `rotate(${SecondDegrees}deg)`;
+
+    const mins = now.getMinutes();
+    const minsDegrees = (( mins / 60) * 360) + 90;
+    hourhand.style.transform= `rotate(${minsDegrees}deg)`;
   }
 
 
@@ -85,3 +96,4 @@
   </script>
 </body>
 </html>
+  
