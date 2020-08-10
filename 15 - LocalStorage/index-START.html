@@ -30,6 +30,36 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+function addItem(e){
+  e.preventDefault(); 
+// we cen use this or document.queryselector
+  const text = (this.querySelector('[name=item]')).value;
+  const item = {
+    text,
+    done: false
+  };
+  items.push(item);
+  populateList(items, itemsList)
+  this.reset();
+}
+function populateList(plates = [], platesList){
+  platesList.innerHTML = plates.map((plate, i) => {
+    return `
+    <li>
+      <imput type="checkbox" data-index=${i} id="item${i}""
+      <label for="">${plate.text}</label>
+      `;
+    }).join('');
+  }
+
+
+
+
+
+
+
+
+addItems.addEventListener('submit', addItem);
 </script>
 
 
