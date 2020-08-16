@@ -74,8 +74,14 @@ h2 {
   margin-top: 20px;
 }
 
-.add-items input {
+.add-items input , .uncheck-items input, .check-items input, .clean-all input {
+  margin: 10px 2px 0 2px;
   padding: 10px;
   outline: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.flex{
+  display: flex;
+
 }
