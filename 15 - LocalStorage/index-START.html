@@ -54,6 +54,7 @@ function addItem(e){
   };
   items.push(item);
   populateList(items, itemsList);
+
   localStorage.setItem('items', JSON.stringify(items));
   this.reset();
 }
@@ -68,9 +69,21 @@ function addItem(e){
 function checkAll (e) {
   e.preventDefault(); 
   let inputs = document.querySelectorAll("input[type=checkbox]")
+  
   inputs.forEach(item => {
     item.checked = true
+    // edytuj array obiektów w local store, bo w tym momeci dodajesz pustą rray
+    items.push(item);
+    var retrievedObject = localStorage.getItem('items');
+   
+
+    localStorage.setItem('items', JSON.stringify(items));
+
+   
+
   })
+
+
 }
 
 //this function not save state of done in localStorage :/
@@ -86,7 +99,10 @@ function uncheckAll (e) {
 // this page is not reload after delate object from localStorage
 function cleanAll(e){
   e.preventDefault();
+
+
   // console.log('clean');
+ 
   localStorage.removeItem('items',JSON.stringify(items));
 
 
