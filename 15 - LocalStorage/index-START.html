@@ -25,13 +25,13 @@
     </form>
     <div class="flex">
     <form class="uncheck-items">
-      <input type="submit" value="Uncheck Items">
+      <input type="submit" value="Uncheck Items" name="uncheckItems">
     </form>
     <form class="check-items">
-      <input type="submit" value="Check Items">
+      <input type="submit" name="checkItems" value="Check Items">
     </form>
     <form class="clean-all">
-      <input type="submit" value=" Clear All">
+      <input type="submit" name="clearitems" value=" Clear All">
     </form>
   </div>
   </div>
@@ -59,51 +59,69 @@ function addItem(e){
   this.reset();
 }
 
-// function uncheck(e){s
-//   e.preventDefault();
-//   console.log('uncheck');
 
-// }
+
+
+
+
 
 //this function not save state of done in localStorage :/
 function checkAll (e) {
   e.preventDefault(); 
-  let inputs = document.querySelectorAll("input[type=checkbox]")
-  
-  inputs.forEach(item => {
-    item.checked = true
-    // edytuj array obiektów w local store, bo w tym momeci dodajesz pustą rray
-    items.push(item);
-    var retrievedObject = localStorage.getItem('items');
+  items.forEach(function(item, index, array) {
+    if(e.target.name == 'checkItems'){
+       (items[index].done = true)
+
+    }
    
-
-    localStorage.setItem('items', JSON.stringify(items));
-
-   
-
   })
+  console.log(items)
+  localStorage.setItem('items', JSON.stringify(items))
+  populateList(items, itemsList)
 
 
 }
-
 //this function not save state of done in localStorage :/
-function uncheckAll (e) {
+function uncheckAll (e){
   e.preventDefault(); 
-  let inputs = document. querySelectorAll("input[type=checkbox]")
-  inputs.forEach(item => {
-    item.checked = false
-    // localStorage.setItem('aszzz', false)
+  items.forEach(function(item, index, array) {
+    if(e.target.name == 'uncheckItems'){
+       (items[index].done = false)
+    }
+
   })
+  console.log(items)
+  localStorage.setItem('items', JSON.stringify(items))
+  populateList(items, itemsList)
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // this page is not reload after delate object from localStorage
 function cleanAll(e){
   e.preventDefault();
-
-
   // console.log('clean');
- 
-  localStorage.removeItem('items',JSON.stringify(items));
+   localStorage.clear()
+  localStorage.setItem('items',JSON.stringify(items));
+  populateList([], itemsList)
+
 
 
 }
@@ -132,7 +150,6 @@ function populateList(plates = [], platesList){
     // console.log(el.dataset.index);
     items[index].done = !items[index].done; 
     localStorage.setItem('items', JSON.stringify(items));
-    populateList(items, itemsList);
 
 
 
