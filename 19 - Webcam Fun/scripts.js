@@ -55,8 +55,8 @@ function takePhoto() {
   const data = canvas.toDataURL('image/jpeg');
   const link = document.createElement('a');
   link.href = data;
-  link.setAttribute('download', 'handsome');
-  link.innerHTML = `<img src="${data}" alt="Handsome Man" />`;
+  link.setAttribute('download', 'photo');
+  link.innerHTML = `<img src="${data}" alt="photo Man" />`;
   strip.insertBefore(link, strip.firstChild);
 }
 
@@ -71,8 +71,8 @@ function redEffect(pixels) {
 
 function rgbSplit(pixels) {
   for (let i = 0; i < pixels.data.length; i+=4) {
-    pixels.data[i - 150] = pixels.data[i + 0]; // RED
-    pixels.data[i + 500] = pixels.data[i + 1]; // GREEN
+    pixels.data[i - 30] = pixels.data[i + 0]; // RED
+    pixels.data[i + 300] = pixels.data[i + 1]; // GREEN
     pixels.data[i - 550] = pixels.data[i + 2]; // Blue
   }
   return pixels;
