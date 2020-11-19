@@ -14,10 +14,39 @@
     </div>
   </div>
 
+  
 <script>
   const speed = document.querySelector('.speed');
   const bar = speed.querySelector('.speed-bar');
   const video = document.querySelector('.flex');
+
+  speed.addEventListener('mousemove', function(e) {
+    // console.log(this.offsetTop);
+    // console.log('pageY :>> ', e.pageY);
+    const y = e.pageY - this.offsetTop;
+    // console.log('e :>> ', e);
+    // console.log(y);
+    const percent = y / this.offsetHeight;
+    const min = 0.4;
+    const max = 4;
+    
+    const height = Math.round(percent * 100) + '%';
+    //* counting percent to 0.4-4 numbers 
+    const playbackRate = percent * (max - min) + min;
+      
+    bar.style.height = height;
+
+    bar.textContent = playbackRate.toFixed(2) + 'x';
+
+    video.playbackRate = playbackRate;
+
+    
+
+    
+    // bar.style()
+    console.log(height);
+    // console.log('percent :>> ', percent);
+});
 </script>
 </body>
 </html>
